@@ -31,11 +31,11 @@ OBJET = $(addprefix $(OBJDIR)/, \
 endif
 
 CXX        = g++-13
-CUDA       = $(shell echo $CUDA)
+CUDA       = /opt/cuda
 CXXCUDA    = g++-12
 NVCC       = nvcc
 # nvcc requires joint notation w/o dot, i.e. "5.2" -> "52"
-ccap       = $(shell echo $CCAP | tr -d '.')
+ccap       = $(shell echo $(CCAP) | tr -d '.')
 
 ifdef gpu
 ifdef debug
