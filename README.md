@@ -1,3 +1,12 @@
+# About this fork
+
+This fork contains following changes:
+
+- Applied Nostr patch by [Alekos Filini](https://twitter.com/afilini/status/1609576086920171521)
+- Applied fix for GCC10+ by [ZenulAbidin](https://bitcointalk.org/index.php?topic=5112311.msg61627081#msg61627081)
+
+However, Nostr npub mining isn't working for me right now... (Produces `wrong private key generated` error)
+
 # VanitySearch
 
 VanitySearch is a bitcoin address prefix finder. If you want to generate safe private keys, use the -s option to enter your passphrase which will be used for generating a base key as for BIP38 standard (*VanitySearch.exe -s "My PassPhrase" 1MyPrefix*). You can also use *VanitySearch.exe -ps "My PassPhrase"* which will add a crypto secure seed to your passphrase.\
