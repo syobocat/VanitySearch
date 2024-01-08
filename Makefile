@@ -30,25 +30,25 @@ OBJET = $(addprefix $(OBJDIR)/, \
 
 endif
 
-CXX        = g++
-CUDA       = /usr/local/cuda-8.0
-CXXCUDA    = g++
+CXX        = g++-13
+CUDA       = $(shell echo $CUDA)
+CXXCUDA    = g++-12
 NVCC       = nvcc
 # nvcc requires joint notation w/o dot, i.e. "5.2" -> "52"
-ccap       = 61
+ccap       = $(shell echo $CCAP | tr -d '.')
 
 ifdef gpu
 ifdef debug
-CXXFLAGS   = -DWITHGPU -m64  -mssse3 -Wno-write-strings -g -I. -I$(CUDA)/include
+CXXFLAGS   = -DWITHGPU -m64 -mssse3 -Wno-write-strings -g -I. -I$(CUDA)/include
 else
-CXXFLAGS   =  -DWITHGPU -m64 -mssse3 -Wno-write-strings -O2 -I. -I$(CUDA)/include
+CXXFLAGS   = -DWITHGPU -march=native -O2 -m64 -mssse3 -Wno-write-strings -fno-strict-aliasing -I. -I$(CUDA)/include
 endif
 LFLAGS     = -lpthread -L$(CUDA)/lib64 -lcudart
 else
 ifdef debug
 CXXFLAGS   = -m64 -mssse3 -Wno-write-strings -g -I. -I$(CUDA)/include
 else
-CXXFLAGS   =  -m64 -mssse3 -Wno-write-strings -O2 -I. -I$(CUDA)/include
+CXXFLAGS   = -march=native -O2 -m64 -mssse3 -Wno-write-strings -fno-strict-aliasing -I. -I$(CUDA)/include
 endif
 LFLAGS     = -lpthread
 endif
